@@ -2,8 +2,7 @@ import './App.css'
 import { useRef, useEffect, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 
-//mapboxgl.accessToken = 'sk.eyJ1IjoiYWJlcmthbmlkZXYiLCJhIjoiY2x1dm93MnF2MDF5cDJrbnNvdGltdjRtaSJ9.Ud0YUqZxfbudftUgrqrqwQ';
-mapboxgl.accessToken = 'pk.eyJ1IjoiYWJlcmthbmlkZXYiLCJhIjoiY2x1dm9zMXJhMDVxMzJrcGJ2YWJmOGZ1aiJ9.Jx506_t4t4YqQ_RCW2uvXg';
+mapboxgl.accessToken = 'TOKEN';
 
 
 function App() {
