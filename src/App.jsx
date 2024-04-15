@@ -201,7 +201,7 @@ export default function App() {
               alt="Your Company"
             />
             <h2 style={{ marginLeft: '16px' }}>
-              <b>STEP PLUS</b>
+              <b className="font-semibold text-gray-950 text-xl">STEP PLUS</b>
             </h2>
           </div>
           <nav className="flex flex-1 flex-col">

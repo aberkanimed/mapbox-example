@@ -3,24 +3,22 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "traffic_flow": "congested",
+        "traffic_speed": 20,
+        "traffic_density": "high",
+        "transport_mode": "private",
+        "vehicle_type": "car"
+      },
       "geometry": {
         "coordinates": [
           [
-            -4.416348627784856,
-            36.7186198677193
+            -4.43996353258899,
+            36.699604084564015
           ],
           [
-            -4.419564732646364,
-            36.71774795287976
-          ],
-          [
-            -4.419770289281956,
-            36.717679297747864
-          ],
-          [
-            -4.420695294142035,
-            36.716721552257226
+            -4.441979619168762,
+            36.69675468304473
           ]
         ],
         "type": "LineString"
@@ -28,24 +26,68 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "traffic_flow": "smooth",
+        "traffic_speed": 40,
+        "traffic_density": "low",
+        "transport_mode": "private",
+        "vehicle_type": "car"
+      },
       "geometry": {
         "coordinates": [
           [
-            -4.420797694503364,
-            36.716432291225374
+            -4.441894191771041,
+            36.69675468304473
           ],
           [
-            -4.419754445385081,
-            36.717538534011865
+            -4.439638908478884,
+            36.69983696367288
+          ]
+        ],
+        "type": "LineString"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "traffic_flow": "smooth",
+        "traffic_speed": 50,
+        "traffic_density": "low",
+        "transport_mode": "public",
+        "vehicle_type": "car"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            -4.43996353258899,
+            36.699604084564015
           ],
           [
-            -4.419458721225567,
-            36.71768339795874
+            -4.441979619168762,
+            36.69675468304473
+          ]
+        ],
+        "type": "LineString"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "traffic_flow": "moderate",
+        "traffic_speed": 30,
+        "traffic_density": "medium",
+        "transport_mode": "public",
+        "vehicle_type": "car"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            -4.441894191771041,
+            36.69675468304473
           ],
           [
-            -4.414924284112175,
-            36.71890814586631
+            -4.439638908478884,
+            36.69983696367288
           ]
         ],
         "type": "LineString"
