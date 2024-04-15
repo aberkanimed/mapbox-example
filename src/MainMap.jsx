@@ -1,8 +1,8 @@
 import { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import CONFIG from './constant/config';
+import MAP_CONFIG from './constants/map-config';
 
-mapboxgl.accessToken = CONFIG.token;
+mapboxgl.accessToken = MAP_CONFIG.TOKEN;
 
 function MainMap() {
   const mapContainer = useRef(null);
