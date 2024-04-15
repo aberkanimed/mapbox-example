@@ -15,6 +15,7 @@ import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/20/solid';
 import MainMap from './MainMap';
+import MapTrafficFlow from './components/MapTrafficFlow';
 
 const navigation = [
   { name: 'Traffic incidents', icon: HomeIcon, current: true },
@@ -354,9 +355,7 @@ export default function App() {
         {activeTab === 0 ? (
           <main className="py-10">
             <div className="px-4 sm:px-6 lg:px-8">
-              <Card>
-                <MainMap />
-              </Card>
+                <MapTrafficFlow />
             </div>
           </main>
         ) : null}
