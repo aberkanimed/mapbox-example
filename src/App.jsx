@@ -13,6 +13,7 @@
   ```
 */
 import { Fragment, useState } from 'react'
+import { Card } from '@tremor/react';
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
@@ -365,7 +366,14 @@ export default function App() {
 
           <main className="py-10">
             <div className="px-4 sm:px-6 lg:px-8">
-              {/* Your content */}
+            <Card className="mx-auto max-w-md">
+              <h4 className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+                Sales
+              </h4>
+              <p className="text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                $71,465
+              </p>
+            </Card>
             </div>
           </main>
         </div>
