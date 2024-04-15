@@ -17,8 +17,8 @@ import {
 import MainMap from './MainMap';
 
 const navigation = [
-  { name: 'Trafficts incidents', icon: HomeIcon, current: true },
-  { name: 'Trafficts flow', icon: UsersIcon, current: false },
+  { name: 'Traffic incidents', icon: HomeIcon, current: true },
+  { name: 'Traffic flow', icon: UsersIcon, current: false },
   { name: 'Reports', icon: FolderIcon, current: false },
 ];
 const teams = [
