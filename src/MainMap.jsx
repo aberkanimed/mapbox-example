@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import MAP_CONFIG from './constants/map-config';
+import MAP_CONFIG from './constant/map-config';
 
 mapboxgl.accessToken = MAP_CONFIG.TOKEN;
 
