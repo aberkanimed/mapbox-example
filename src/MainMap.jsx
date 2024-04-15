@@ -4,7 +4,7 @@ import MAP_CONFIG from './constant/map-config';
 
 mapboxgl.accessToken = MAP_CONFIG.TOKEN;
 
-function MainMap() {
+function MainTrafficIncident() {
   const mapContainer = useRef(null);
   const [hour, setHour] = useState(0);
   const [map, setMap] = useState(null);
@@ -125,4 +125,4 @@ function MainMap() {
   );
 }
 
-export default MainMap;
+export default MainTrafficIncident;

@@ -12,7 +12,7 @@ node_modules
 dist
 dist-ssr
 *.local
-src/constant/config.js
+
 src/constant/map-config.js
 
 # Editor directories and files

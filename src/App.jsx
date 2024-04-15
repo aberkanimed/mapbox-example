@@ -14,7 +14,7 @@ import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/20/solid';
-import MainMap from './MainMap';
+import MapTrafficIncident from './MainMap';
 import MapTrafficFlow from './components/MapTrafficFlow';
 
 const navigation = [
@@ -355,14 +355,14 @@ export default function App() {
         {activeTab === 0 ? (
           <main className="py-10">
             <div className="px-4 sm:px-6 lg:px-8">
-                <MapTrafficFlow />
+              <MapTrafficIncident />
             </div>
           </main>
         ) : null}
         {activeTab === 1 ? (
           <main className="py-10">
             <div className="px-4 sm:px-6 lg:px-8">
-              <Card>Accidents map</Card>
+              <MapTrafficFlow />
             </div>
           </main>
         ) : null}
