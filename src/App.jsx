@@ -4,10 +4,7 @@ import { Dialog, Menu, Transition } from '@headlessui/react';
 import {
   Bars3Icon,
   BellIcon,
-  CalendarIcon,
-  ChartPieIcon,
   Cog6ToothIcon,
-  DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
   UsersIcon,
@@ -20,9 +17,9 @@ import {
 import MainMap from './MainMap';
 
 const navigation = [
-  { name: 'Dashboard', icon: HomeIcon, current: true },
-  { name: 'Accidents', icon: UsersIcon, current: false },
-  { name: 'Projects', icon: FolderIcon, current: false },
+  { name: 'Trafficts incidents', icon: HomeIcon, current: true },
+  { name: 'Trafficts flow', icon: UsersIcon, current: false },
+  { name: 'Reports', icon: FolderIcon, current: false },
 ];
 const teams = [
   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
@@ -45,7 +42,6 @@ export default function App() {
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
-  console.log(activeTab, 'cual es');
 
   return (
     <div>
@@ -106,7 +102,7 @@ export default function App() {
                   <div className="flex h-16 shrink-0 items-center">
                     <img
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                      src="../public/images/vdflogo.png"
                       alt="Your Company"
                     />
                   </div>
@@ -200,9 +196,12 @@ export default function App() {
           <div className="flex h-16 shrink-0 items-center">
             <img
               className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              src="../public/images/vdflogo.png"
               alt="Your Company"
             />
+            <h2 style={{ marginLeft: '16px' }}>
+              <b>STEP PLUS</b>
+            </h2>
           </div>
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
