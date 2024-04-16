@@ -4,6 +4,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": 1,
         "traffic_flow": "congested",
         "traffic_speed": 20,
         "traffic_density": "high",
@@ -27,6 +28,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": 2,
         "traffic_flow": "smooth",
         "traffic_speed": 40,
         "traffic_density": "low",
@@ -50,6 +52,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": 3,
         "traffic_flow": "smooth",
         "traffic_speed": 50,
         "traffic_density": "low",
@@ -73,6 +76,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": 4,
         "traffic_flow": "moderate",
         "traffic_speed": 30,
         "traffic_density": "medium",

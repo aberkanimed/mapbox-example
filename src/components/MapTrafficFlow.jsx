@@ -2,13 +2,15 @@ import { useRef, useEffect, useState } from 'react';
 import { Card } from '@tremor/react';
 import MAP_CONFIG from '../constant/map-config';
 import mapboxgl from 'mapbox-gl';
+import TrafficModeChart from './TrafficModeChart';
+import TrafficFunnelChart from './TrafficAreaChart';
 
 mapboxgl.accessToken = MAP_CONFIG.TOKEN;
 
 function MapTrafficFlow() {
   const mapContainer = useRef(null);
   const [map, setMap] = useState(null);
-  const [transportMode, setTransportMode] = useState("public");
+  const [trafficMode, setTrafficMode] = useState('private');
 
   useEffect(() => {
     const newMap = new mapboxgl.Map({
@@ -41,7 +43,7 @@ function MapTrafficFlow() {
           'line-width': 9,
           'line-opacity': 0.4,
         },
-        filter: ['==', ['string', ['get', 'transport_mode']], 'private'],
+        filter: ['==', ['string', ['get', 'transport_mode']], trafficMode],
       });
 
       // add a line layer with line-dasharray set to the first value in dashArraySequence
@@ -60,17 +62,9 @@ function MapTrafficFlow() {
           'line-width': 9,
           'line-dasharray': [0, 4, 3],
         },
-        filter: ['==', ['string', ['get', 'transport_mode']], 'private'],
-        metadata: {
-          'transport_flow': [
-              'match', ['get', 'traffic_flow'],
-              'smooth', 'smooth',
-              'moderate', 'moderate',
-              'congested', 'congested',
-              'smooth'
-          ]
-        },
+        filter: ['==', ['string', ['get', 'transport_mode']], trafficMode],
       });
+
 
       setMap(newMap);
     });
@@ -100,40 +94,13 @@ function MapTrafficFlow() {
       let step = 0;
 
       const animateDashArray = (timestamp) => {
-        // Get the transport_flow value from the GeoJSON properties
-        const transportFlow = map.getLayer('line-dashed').metadata.transport_flow;
-
-        // Define a speed multiplier based on the transport_flow value
-        let speedMultiplier;
-        switch (transportFlow) {
-          case 'smooth':
-            console.log(transportFlow);
-            speedMultiplier = 20; // Adjust as needed for smooth flow
-            break;
-          case 'moderate':
-            console.log(transportFlow);
-            speedMultiplier = 65; // Adjust as needed for moderate flow
-            break;
-          case 'congested':
-            console.log(transportFlow);
-            speedMultiplier = 100; // Adjust as needed for congested flow
-            break;
-          default:
-            console.log(transportFlow);
-            speedMultiplier = 50; // Default speed multiplier
-        }
-        const newStep = parseInt((timestamp / speedMultiplier) % dashArraySequence.length);
+        const newStep = parseInt((timestamp / 50) % dashArraySequence.length);
 
         if (newStep !== step) {
-          map.setPaintProperty(
-            'line-dashed',
-            'line-dasharray',
-            dashArraySequence[step]
-          );
+          map.setPaintProperty('line-dashed', 'line-dasharray', dashArraySequence[step]);
           step = newStep;
         }
 
-        // Request the next frame of the animation.
         requestAnimationFrame(animateDashArray);
       };
 
@@ -141,17 +108,73 @@ function MapTrafficFlow() {
     }
   }, [map])
 
-/*   useEffect(() => {
+useEffect(() => {
     if (map) {
       // Assuming 'collisions' is a valid layer in your map's style
-      map.setFilter('collisions', ['==', ['text', ['get', 'transport_mode']], transportMode]);
+      map.setFilter('line-dashed', ['==', ['string', ['get', 'transport_mode']], trafficMode]);
+      map.setFilter('line-background', ['==', ['string', ['get', 'transport_mode']], trafficMode]);
     }
-  }, [transport_mode, map]); */
+  }, [trafficMode, map]);
+
+  const handleOptionChange = (event) => {
+    // Update the selected option when a radio button is changed
+    setTrafficMode(event.target.value);
+  };
 
   return (
-    <Card>
-      <div ref={mapContainer} className="h-96" />
-    </Card>
+    <>
+      <Card>
+        <div className="relative">
+        <div ref={mapContainer} className="h-80" />
+        <div className="absolute w-60 m-3 px-3 py-5 bg-white top-0">
+          <h2 className="font-bold">Traffic Flow</h2>
+          <div className='flex gap-2'>
+            <div className='flex flex-col'>
+              <label className='text-xs'>Smooth</label>
+              <div className='h-3 w-12 bg-green-600'></div>
+            </div>
+            <div className='flex flex-col'>
+              <label className='text-xs'>Moderate</label>
+              <div className='h-3 w-12 bg-orange-600'></div>
+            </div>
+            <div className='flex flex-col'>
+              <label className='text-xs'>Congestion</label>
+              <div className='h-3 w-12 bg-red-600'></div>
+            </div>
+          </div>
+          <div className='mt-2'>
+            <h2 className="font-bold">
+              Traffic Mode
+            </h2>
+            <div className='mt-2 flex gap-2'>
+              <label>
+                <input
+                  type="radio"
+                  value="private"
+                  checked={trafficMode === 'private'}
+                  onChange={handleOptionChange}
+                />
+                Private
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="public"
+                  checked={trafficMode === 'public'}
+                  onChange={handleOptionChange}
+                />
+                Public
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      </Card>
+      <div className='flex gap-x-5 mt-5'>
+        <TrafficModeChart></TrafficModeChart>
+        <TrafficFunnelChart></TrafficFunnelChart>
+      </div>
+    </>
   );
 }
 
