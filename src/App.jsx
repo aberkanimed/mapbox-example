@@ -9,7 +9,11 @@ import {
   HomeIcon,
   UsersIcon,
   XMarkIcon,
+  DocumentChartBarIcon,
+  MapIcon,
+  PresentationChartBarIcon,
 } from '@heroicons/react/24/outline';
+import { SparklesIcon } from '@heroicons/react/20/solid'
 import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
@@ -17,11 +21,12 @@ import {
 import MapTrafficIncident from './MainMap';
 import MapTrafficFlow from './components/MapTrafficFlow';
 import CrowdedArea from './components/CrowdedArea';
+import ChatAi from './components/ChatAi';
 
 const navigation = [
-  { name: 'Traffic incidents', icon: HomeIcon, current: true },
-  { name: 'Traffic flow', icon: UsersIcon, current: false },
-  { name: 'Crowded Areas', icon: FolderIcon, current: false },
+  { name: 'Traffic incidents', icon: DocumentChartBarIcon, current: true },
+  { name: 'Traffic flow', icon: MapIcon, current: false },
+  { name: 'Crowded Areas', icon: PresentationChartBarIcon, current: false },
   { name: 'Reports', icon: FolderIcon, current: false },
 ];
 const teams = [
@@ -42,6 +47,7 @@ function classNames(...classes) {
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handleTabClick = (index) => {
     setActiveTab(index);
@@ -288,6 +294,14 @@ export default function App() {
             </form>
             <div className="flex items-center gap-x-4 lg:gap-x-6">
               <button
+                onClick={() => setIsChatOpen(!isChatOpen)}
+                type="button"
+                className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                <SparklesIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
+                Ask STEP AI
+              </button>
+              <button
                 type="button"
                 className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
               >
@@ -354,36 +368,24 @@ export default function App() {
             </div>
           </div>
         </div>
-
-        {activeTab === 0 ? (
           <main className="py-10">
             <div className="px-4 sm:px-6 lg:px-8">
-              <MapTrafficIncident />
-            </div>
-          </main>
-        ) : null}
-        {activeTab === 1 ? (
-          <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">
-              <MapTrafficFlow />
-            </div>
-          </main>
-        ) : null}
-        {activeTab === 2 ? (
-          <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">
-              <CrowdedArea />
-            </div>
-          </main>
-        ) : null}
-        {activeTab === 3 ? (
-          <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">
-              <Card>Third map</Card>
-            </div>
-          </main>
-        ) : null}
+                    {activeTab === 0 ? (
+                          <MapTrafficIncident />
+                    ) : null}
+                    {activeTab === 1 ? (
+                          <MapTrafficFlow />
+                    ) : null}
+                    {activeTab === 2 ? (
+                          <CrowdedArea />
+                    ) : null}
+                    {activeTab === 3 ? (
+                          <Card>Third map</Card>
+                    ) : null}
+              </div>
+            </main>
       </div>
+      <ChatAi open={isChatOpen} setOpen={setIsChatOpen} />
     </div>
   );
 }
