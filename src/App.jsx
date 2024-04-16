@@ -16,16 +16,19 @@ import {
 } from '@heroicons/react/20/solid';
 import MapTrafficIncident from './MainMap';
 import MapTrafficFlow from './components/MapTrafficFlow';
+import CrowdedArea from './components/CrowdedArea';
 
 const navigation = [
   { name: 'Traffic incidents', icon: HomeIcon, current: true },
   { name: 'Traffic flow', icon: UsersIcon, current: false },
+  { name: 'Crowded Areas', icon: FolderIcon, current: false },
   { name: 'Reports', icon: FolderIcon, current: false },
 ];
 const teams = [
   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
   { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+  { id: 4, name: 'Workcation', href: '#', initial: 'W', current: false },
 ];
 const userNavigation = [
   { name: 'Your profile', href: '#' },
@@ -201,7 +204,7 @@ export default function App() {
               alt="Your Company"
             />
             <h2 style={{ marginLeft: '16px' }}>
-              <b>STEP PLUS</b>
+              <b className="font-semibold text-gray-950 text-xl">STEP PLUS</b>
             </h2>
           </div>
           <nav className="flex flex-1 flex-col">
@@ -367,6 +370,13 @@ export default function App() {
           </main>
         ) : null}
         {activeTab === 2 ? (
+          <main className="py-10">
+            <div className="px-4 sm:px-6 lg:px-8">
+              <CrowdedArea />
+            </div>
+          </main>
+        ) : null}
+        {activeTab === 3 ? (
           <main className="py-10">
             <div className="px-4 sm:px-6 lg:px-8">
               <Card>Third map</Card>
