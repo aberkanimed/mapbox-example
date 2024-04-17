@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { SparklesIcon, PaperAirplaneIcon } from '@heroicons/react/20/solid'
+import { TypeAnimation } from 'react-type-animation'
 
 export default function ChatAi({ open, setOpen }) {
   const [messageStack, setMessageStack] = useState([]);
@@ -31,7 +32,7 @@ export default function ChatAi({ open, setOpen }) {
       id: generateStringWithTimestamp('step-ai'),
       logoSrc: '../public/images/vdflogo.png',
       username: 'STEP AI',
-      message: 'lorem Ipsum'
+      message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos numquam vitae, asperiores enim cumque libero alias voluptatem nihil nesciunt harum inventore architecto ipsa cupiditate sequi temporibus repellat error earum impedit.'
     };
     setMessageStack(prevStack => [...prevStack, newMessage]);
   }
@@ -80,7 +81,29 @@ export default function ChatAi({ open, setOpen }) {
                       </div>
                       <div className="relative mt-6 flex-1 px-4 sm:px-6">
                         {
-                          messageStack.map((element) => (
+                          messageStack.map((element) => {
+                            return element.username !== 'You' ?
+                            <div key={element.id} className='mt-4 px-2 py-4 rounded-md bg-blue-200 text-gray-700'>
+                                <div className='flex items-center gap-2'>
+                                    <img
+                                        className="inline-block h-10 w-10 rounded-full"
+                                        src={element.logoSrc}
+                                        alt=""
+                                    />
+                                    <div className='text-sm font-semibold'>{element.username}</div>
+                                </div>
+                                <p className='mt-2 px-2'>
+                                <TypeAnimation
+                                  sequence={[
+                                    element.message,
+                                    500,
+                                  ]}
+                                  style={{ fontSize: '1rem', lineHeight: '1.5rem', color: 'rgb(55 65 81 / var(1))' }}
+                                  repeat={Infinity}
+                                /> 
+                                </p>
+                            </div>
+                            :
                             <div key={element.id} className='mt-4 px-2 py-4 rounded-md bg-blue-200 text-gray-700'>
                                 <div className='flex items-center gap-2'>
                                     <img
@@ -92,7 +115,7 @@ export default function ChatAi({ open, setOpen }) {
                                 </div>
                                 <p className='mt-2 px-2'>{element.message}</p>
                             </div>
-                          ))
+                          })
                         }
                       </div>
                       <div className='flex-end px-4 sm:px-6'>
