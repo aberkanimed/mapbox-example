@@ -3,10 +3,12 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { SparklesIcon, PaperAirplaneIcon } from '@heroicons/react/20/solid'
 import { TypeAnimation } from 'react-type-animation'
+import AI_RESPONSE from '../constant/traffic-config'
 
 export default function ChatAi({ open, setOpen }) {
   const [messageStack, setMessageStack] = useState([]);
   const [messageInput, setMessageInput] = useState('');
+  const [responseGiven, setResponseGiven] = useState(false);
 
   function generateStringWithTimestamp(prefix) {
     const timestamp = Date.now();
@@ -28,13 +30,26 @@ export default function ChatAi({ open, setOpen }) {
   }
 
   const generateResponse = () => {
-    const newMessage = {
-      id: generateStringWithTimestamp('step-ai'),
-      logoSrc: '../public/images/vdflogo.png',
-      username: 'STEP AI',
-      message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos numquam vitae, asperiores enim cumque libero alias voluptatem nihil nesciunt harum inventore architecto ipsa cupiditate sequi temporibus repellat error earum impedit.'
-    };
-    setMessageStack(prevStack => [...prevStack, newMessage]);
+    if(!responseGiven) {
+      const newMessage = {
+        id: generateStringWithTimestamp('step-ai'),
+        logoSrc: '../public/images/vdflogo.png',
+        username: 'STEP AI',
+        message: AI_RESPONSE[0].response
+      };
+      setResponseGiven(!responseGiven)
+      setMessageStack(prevStack => [...prevStack, newMessage]);
+    } else {
+      const newMessage = {
+        id: generateStringWithTimestamp('step-ai'),
+        logoSrc: '../public/images/vdflogo.png',
+        username: 'STEP AI',
+        message: AI_RESPONSE[1].response
+      };
+      setResponseGiven(!responseGiven)
+      setMessageStack(prevStack => [...prevStack, newMessage]);
+    }
+    
   }
 
   function handleInputChange(event) {
@@ -98,6 +113,7 @@ export default function ChatAi({ open, setOpen }) {
                                     element.message,
                                     500,
                                   ]}
+                                  speed={{type: 'keyStrokeDelayInMs', value: 12}}
                                   style={{ fontSize: '1rem', lineHeight: '1.5rem', color: 'rgb(55 65 81 / var(1))' }}
                                   repeat={Infinity}
                                 /> 
@@ -118,7 +134,7 @@ export default function ChatAi({ open, setOpen }) {
                           })
                         }
                       </div>
-                      <div className='flex-end px-4 sm:px-6'>
+                      <div className='flex-end px-4 sm:px-6 fixed bottom-0 mb-5'>
                         <div className="mt-2 flex rounded-md shadow-sm">
                             <div className="relative flex flex-grow items-stretch focus-within:z-10">
                             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
