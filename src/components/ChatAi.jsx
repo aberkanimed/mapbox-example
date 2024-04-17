@@ -4,6 +4,42 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { SparklesIcon, PaperAirplaneIcon } from '@heroicons/react/20/solid'
 
 export default function ChatAi({ open, setOpen }) {
+  const [messageStack, setMessageStack] = useState([]);
+  const [messageInput, setMessageInput] = useState('');
+
+  function generateStringWithTimestamp(prefix) {
+    const timestamp = Date.now();
+    return `${prefix}_${timestamp}`;
+  }
+
+  const addMessage = () => {
+    if (messageInput.trim() !== '') {
+      const newMessage = {
+        id: generateStringWithTimestamp('you'),
+        logoSrc: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        username: 'You',
+        message: messageInput
+      };
+      setMessageStack(prevStack => [...prevStack, newMessage]);
+      setMessageInput('');
+      setTimeout(generateResponse, 2000); 
+    }
+  }
+
+  const generateResponse = () => {
+    const newMessage = {
+      id: generateStringWithTimestamp('step-ai'),
+      logoSrc: '../public/images/vdflogo.png',
+      username: 'STEP AI',
+      message: 'lorem Ipsum'
+    };
+    setMessageStack(prevStack => [...prevStack, newMessage]);
+  }
+
+  function handleInputChange(event) {
+    setMessageInput(event.target.value);
+  }
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -43,28 +79,21 @@ export default function ChatAi({ open, setOpen }) {
                         </div>
                       </div>
                       <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                        <div className='px-2 py-4 rounded-md bg-blue-200 text-gray-700'>
-                            <div className='flex items-center gap-2'>
-                                <img
-                                    className="inline-block h-10 w-10 rounded-full"
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt=""
-                                />
-                                <div className='text-sm font-semibold'>You</div>
+                        {
+                          messageStack.map((element) => (
+                            <div key={element.id} className='mt-4 px-2 py-4 rounded-md bg-blue-200 text-gray-700'>
+                                <div className='flex items-center gap-2'>
+                                    <img
+                                        className="inline-block h-10 w-10 rounded-full"
+                                        src={element.logoSrc}
+                                        alt=""
+                                    />
+                                    <div className='text-sm font-semibold'>{element.username}</div>
+                                </div>
+                                <p className='mt-2 px-2'>{element.message}</p>
                             </div>
-                            <p className='mt-2 px-2'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et, maiores facilis. Ipsum ex perspiciatis vero? Atque id numquam perspiciatis illum. Velit, vitae dicta eos nemo dolores maxime ad consectetur aperiam.</p>
-                        </div>
-                        <div className='mt-4 px-2 py-4 rounded-md bg-blue-200 text-gray-700'>
-                            <div className='flex items-center gap-2'>
-                                <img
-                                    className="inline-block h-10 w-10 rounded-full"
-                                    src="../public/images/vdflogo.png"
-                                    alt=""
-                                />
-                                <div className='text-sm font-semibold'>STEP AI</div>
-                            </div>
-                            <p className='mt-2 px-2'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et, maiores facilis. Ipsum ex perspiciatis vero? Atque id numquam perspiciatis illum. Velit, vitae dicta eos nemo dolores maxime ad consectetur aperiam.</p>
-                        </div>
+                          ))
+                        }
                       </div>
                       <div className='flex-end px-4 sm:px-6'>
                         <div className="mt-2 flex rounded-md shadow-sm">
@@ -73,14 +102,17 @@ export default function ChatAi({ open, setOpen }) {
                                 <SparklesIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                             </div>
                             <input
-                                type="email"
-                                name="email"
-                                id="email"
+                                value={messageInput}
+                                onChange={handleInputChange}
+                                type="text"
+                                name="message"
+                                id="message"
                                 className="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 placeholder="Ask STEP AI"
                             />
                             </div>
                             <button
+                            onClick={() => addMessage()}
                             type="button"
                             className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                             >
