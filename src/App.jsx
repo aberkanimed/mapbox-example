@@ -27,7 +27,6 @@ const navigation = [
   { name: 'Traffic incidents', icon: DocumentChartBarIcon, current: true },
   { name: 'Traffic flow', icon: MapIcon, current: false },
   { name: 'Crowded Areas', icon: PresentationChartBarIcon, current: false },
-  { name: 'Reports', icon: FolderIcon, current: false },
 ];
 const teams = [
   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
