@@ -18,7 +18,7 @@ import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/20/solid';
-import MapTrafficIncident from './MainMap';
+import MapTrafficIncident from './components/MainTrafficIncident';
 import MapTrafficFlow from './components/MapTrafficFlow';
 import CrowdedArea from './components/CrowdedArea';
 import ChatAi from './components/ChatAi';
