@@ -1,27 +1,23 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
 # STEP PLUS
+### Overview
+This project is a React application designed to showcase near real-time traffic analytics for Vodafone Hackalympics.
 
-## Overview
-
-This project is a React application designed to provide real-time traffic monitoring and management features. It utilizes various components and libraries to visualize traffic incidents, traffic flow, and crowded areas on a map interface. Additionally, it includes a chat feature powered by AI for user interaction.
+## Team Members
+- Desiree Vetencourt [Pitch Master]
+- Natalia Gorokhova [Team Lead]
+- Nuno Goncalo [Comercial Expert]
+- Alberto Rojas [UI/UX Expert]
+- Omar Abaza [Technical Expert]
+- Mohamed Aberkani [Technical Expert] 
 
 ## Features
-
-- Real-time visualization of traffic incidents, traffic flow, and crowded areas.
-- Interactive map interface for easy navigation and exploration.
-- Chat feature powered by AI for user interaction and assistance.
-- Responsive design for seamless use across devices.
+- Traffic incidents analytics
+- Traffic flow analytics
+- Crowded areas analytics
+- Chat feature powered by AI for user interaction and assistance
 
 ## Technologies Used
-
+- NodeJS
 - React
 - Tailwind CSS
 - Headless UI
@@ -30,7 +26,6 @@ This project is a React application designed to provide real-time traffic monito
 - Chart js
 
 ## Installation
-
 To run the project locally, follow these steps:
 
 1. Clone the repository.
